@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Cafe 주문 계산기</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #5a3e1b;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #6b471f;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 25px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #5a3a17;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 17px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>My Cafe 주문 계산기</h2>
+
+    <label for="menu">음료 선택</label>
+    <select id="menu">
+      <option value="3000">카페라떼 (₩3,000)</option>
+      <option value="2500">아메리카노 (₩2,500)</option>
+      <option value="3500">바닐라라떼 (₩3,500)</option>
+    </select>
+
+    <label for="size">사이즈 선택</label>
+    <select id="size">
+      <option value="0">Small (+₩0)</option>
+      <option value="1000">Medium (+₩1,000)</option>
+      <option value="2000">Large (+₩2,000)</option>
+    </select>
+
+    <label for="count">수량</label>
+    <input type="number" id="count" value="1" min="1" />
+
+    <button onclick="calculate()">계산하기</button>
+
+    <div class="result" id="result"> </div>
+  </div>
+
+  <script>
+    function calculate() {
+      const menu = document.getElementById("menu");
+      const size = document.getElementById("size");
+      const count = parseInt(document.getElementById("count").value);
+
+      const menuPrice = parseInt(menu.value);
+      const sizePrice = parseInt(size.value);
+      const sizeText = size.options[size.selectedIndex].text.split(' ')[0];
+      const total = (menuPrice + sizePrice) * count;
+
+      const result = document.getElementById("result");
+      result.innerHTML = `총 금액: <strong>₩${total.toLocaleString()}</strong> (${count}잔, ${sizeText})`;
+    }
+  </script>
+
+</body>
+</html>
