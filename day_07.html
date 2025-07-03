@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM 명령어 실습</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+    .box {
+      width: 200px;
+      height: 100px;
+      border: 2px solid black;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 data-info="DOM 연습 중입니다!">DOM 실습</h1>
+
+  <!-- 1) 클래스 제어 버튼 -->
+  <button id="toggleBtn">클래스 토글</button>
+
+  <!-- 2) 크기/위치 확인용 요소 -->
+  <div id="targetBox" class="box" data-user-id="123" data-role="admin">
+    대상 박스
+  </div>
+
+  <!-- 3) 속성 제어 버튼 -->
+  <button id="attrBtn">속성 보기/설정</button>
+
+  <script>
+    const box = document.getElementById("targetBox");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const attrBtn = document.getElementById("attrBtn");
+
+    // 1. 클래스 제어
+    toggleBtn.addEventListener("click", () => {
+      box.classList.toggle("highlight");
+    });
+
+    // 2. 크기/위치 정보
+    const rect = box.getBoundingClientRect();
+    console.log("getBoundingClientRect():", rect);
+    console.log("offsetLeft:", box.offsetLeft);
+    console.log("offsetTop:", box.offsetTop);
+
+    // 3. 속성 제어
+    attrBtn.addEventListener("click", () => {
+      const role = box.getAttribute("data-role");
+      console.log("data-role:", role);
+      box.setAttribute("data-role", "superadmin");
+      console.log("data-role 변경됨 →", box.getAttribute("data-role"));
+    });
+
+    // 4. dataset 접근
+    const userId = box.dataset.userId;
+    const role = box.dataset.role;
+    console.log("dataset.userId:", userId);
+    console.log("dataset.role:", role);
+  </script>
+
+</body>
+</html>
