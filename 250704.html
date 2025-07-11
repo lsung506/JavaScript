@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>이미지 변경</title>
+</head>
+<body>
+  <img src="./images/irangi_01.png" alt="어려워요?" class="img1" id="mainImg">
+
+  <div>
+    <button type="button" id="btn1">01</button>
+    <button type="button" id="btn2">02</button>
+    <button type="button" id="btn3">03</button>
+  </div>
+
+  <script>
+    const img = document.getElementById('mainImg');
+
+    document.getElementById('btn1').addEventListener('click', () => {
+      img.src = './images/irangi_01.png';
+    });
+
+    document.getElementById('btn2').addEventListener('click', () => {
+      img.src = './images/irangi_02.png';
+    });
+
+    document.getElementById('btn3').addEventListener('click', () => {
+      img.src = './images/irangi_03.png';
+    });
+  </script>
+</body>
+</html>
