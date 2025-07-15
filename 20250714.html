@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>계산기 애플리케이션</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    input[type="number"] {
+      width: 120px;
+      margin: 4px;
+    }
+    button {
+      margin: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>계산기 애플리케이션</h1>
+
+  <label>첫 번째 숫자 <input type="number" id="num1"></label>
+  <label>두 번째 숫자 <input type="number" id="num2"></label>
+  <br>
+  <input type="text" id="result" placeholder="계산 결과" readonly>
+  <p id="status">아직 계산이 되지 않았습니다.</p>
+
+  <button onclick="calculate('add')">더하기</button>
+  <button onclick="calculate('subtract')">빼기</button>
+  <button onclick="calculate('multiply')">곱하기</button>
+  <button onclick="calculate('divide')">나누기</button>
+  <br>
+  <button onclick="toggleAdvanced()">고급 계산기 활성화</button>
+
+  <script>
+    function calculate(operation) {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const resultField = document.getElementById('result');
+      const status = document.getElementById('status');
+
+      if (isNaN(num1) || isNaN(num2)) {
+        resultField.value = '';
+        status.textContent = '숫자를 모두 입력해 주세요.';
+        return;
+      }
+
+      let result;
+      switch (operation) {
+        case 'add':
+          result = num1 + num2;
+          break;
+        case 'subtract':
+          result = num1 - num2;
+          break;
+        case 'multiply':
+          result = num1 * num2;
+          break;
+        case 'divide':
+          result = num2 !== 0 ? (num1 / num2).toFixed(2) : '0으로 나눌 수 없습니다';
+          break;
+      }
+
+      resultField.value = result;
+      status.textContent = '계산이 완료되었습니다.';
+    }
+
+    function toggleAdvanced() {
+      alert("고급 계산기는 아직 구현되지 않았습니다.");
+    }
+  </script>
+
+</body>
+</html>
